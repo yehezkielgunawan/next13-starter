@@ -1,7 +1,21 @@
 "use client";
 import { ThemeProvider } from "next-themes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <>{children}</>;
+  }
+
+  return (
+    <ThemeProvider enableSystem attribute="class">
+      {children}
+    </ThemeProvider>
+  );
 }
