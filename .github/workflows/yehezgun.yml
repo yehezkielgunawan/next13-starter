@@ -1,25 +1,21 @@
 name: Template Git Actions
 
-run-name:
-
 on:
   pull_request:
     branches:
       - main
 
 jobs:
-  Base-Actions:
+  base-actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event"
-
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: "yarn"
 
       - name: Install dependencies
